@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "570162286412",
+    "project_id": "flutterfire-dbc20",
+    "storage_bucket": "flutterfire-dbc20.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570162286412:android:699f1462ca3fea879589e9",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_crafty_bay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr0wyt1GqNpbhkWaeskAkcQxVnv1gEyOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570162286412:android:0d8dc3f5509478f59589e9",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr0wyt1GqNpbhkWaeskAkcQxVnv1gEyOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570162286412:android:7e8e3aae600dc9be9589e9",
+        "android_client_info": {
+          "package_name": "com.example.telemedicine_platform_for_remote_areas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr0wyt1GqNpbhkWaeskAkcQxVnv1gEyOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
