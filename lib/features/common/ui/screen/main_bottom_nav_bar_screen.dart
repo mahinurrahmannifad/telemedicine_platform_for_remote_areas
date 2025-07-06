@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/auth/ui/screens/sign_in_screen.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/common/controllers/main_bottom_nav_bar_controller.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/home/ui/screens/home_screen.dart';

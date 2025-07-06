@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _moveToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     await Get.find<AuthController>().getUserData();
     Navigator.pushReplacementNamed(context, MainBottomNavBarScreen.name);
   }
