@@ -1,48 +1,36 @@
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/common/data/models/slider_model.dart';
 
+
 class SliderDatabaseHelper {
-  static Database? _database;
+  static Database? _db;
 
   static Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await initDB();
-    return _database!;
+    _db ??= await _initDB();
+    return _db!;
   }
 
-  static Future<Database> initDB() async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'slider.db');
-
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, version) async {
-        await db.execute('''
-          CREATE TABLE sliders(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            photo_path TEXT NOT NULL,
-            description TEXT NOT NULL
-          )
-        ''');
-      },
-    );
+  static Future<Database> _initDB() async {
+    final path = join(await getDatabasesPath(), 'slider.db');
+    return await openDatabase(path, version: 1, onCreate: (db, version) async {
+      await db.execute('''
+        CREATE TABLE sliders(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          asset_path TEXT,
+        )
+      ''');
+    });
   }
 
-  static Future<void> insertSlider(SliderModel model) async {
+  static Future<void> insertSlider(SliderModel slider) async {
     final db = await database;
-    await db.insert('sliders', model.toMap());
+    await db.insert('sliders', slider.toMap());
   }
 
-  static Future<List<SliderModel>> getSliders() async {
+  static Future<List<SliderModel>> fetchSliders() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('sliders');
-    return List.generate(maps.length, (i) => SliderModel.fromMap(maps[i]));
-  }
-
-  static Future<void> deleteAllSliders() async {
-    final db = await database;
-    await db.delete('sliders');
+    return maps.map((map) => SliderModel.fromMap(map)).toList();
   }
 }
