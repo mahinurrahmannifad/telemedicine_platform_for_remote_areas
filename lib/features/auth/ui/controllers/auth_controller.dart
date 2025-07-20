@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:telemedicine_platform_for_remote_areas/features/auth/data/models/user_model.dart';
+import 'package:telemedicine_platform_for_remote_areas/features/auth/data/models/auth_user_model.dart';
 
 class AuthController {
   final String _tokenKey = 'token';
   final String _userDataKey = 'user-data';
 
   String? token;
-  UserModel? user;
+  AuthUserModel? user;
 
-  Future<void> saveUserData(String accessToken, UserModel userModel) async {
+  Future<void> saveUserData(String accessToken, AuthUserModel userModel) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString(_tokenKey, accessToken);
     await sharedPreferences.setString(_userDataKey, jsonEncode(userModel.toJson()));
@@ -23,7 +23,7 @@ class AuthController {
     token = sharedPreferences.getString(_tokenKey);
     String? userData = sharedPreferences.getString(_userDataKey);
     if (userData != null) {
-      user = UserModel.fromJson(jsonDecode(userData));
+      user = AuthUserModel.fromJson(jsonDecode(userData));
     }
   }
 

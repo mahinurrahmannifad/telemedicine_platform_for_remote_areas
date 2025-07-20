@@ -4,10 +4,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
-class UserDBHelper {
-  static final UserDBHelper _instance = UserDBHelper._internal();
-  factory UserDBHelper() => _instance;
-  UserDBHelper._internal();
+class AuthUserDBHelper {
+  static final AuthUserDBHelper _instance = AuthUserDBHelper._internal();
+  factory AuthUserDBHelper() => _instance;
+  AuthUserDBHelper._internal();
 
   Database? _db;
 
@@ -37,18 +37,18 @@ class UserDBHelper {
     );
   }
 
-  Future<void> insertUser(String email, String password, String fullName) async {
+  Future<void> insertUser(
+    String email,
+    String password,
+    String fullName,
+  ) async {
     final db = await database;
     final hashedPassword = sha256.convert(utf8.encode(password)).toString();
-    await db.insert(
-      'users',
-      {
-        'email': email,
-        'password': hashedPassword,
-        'fullName': fullName,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert('users', {
+      'email': email,
+      'password': hashedPassword,
+      'fullName': fullName,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<Map<String, dynamic>?> getUser(String email) async {

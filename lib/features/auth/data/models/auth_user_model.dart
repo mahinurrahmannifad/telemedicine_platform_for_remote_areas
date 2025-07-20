@@ -1,4 +1,4 @@
-class UserModel {
+class AuthUserModel {
   final String id;
   final String firstName;
   final String lastName;
@@ -7,17 +7,18 @@ class UserModel {
   final String avatarUrl;
   final String city;
 
-  UserModel(
-      {required this.id,
-        required this.firstName,
-        required this.lastName,
-        required this.email,
-        required this.phone,
-        required this.avatarUrl,
-        required this.city});
+  AuthUserModel({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.phone,
+    required this.avatarUrl,
+    required this.city,
+  });
 
-  factory UserModel.fromJson(Map<String, dynamic> jsonData) {
-    return UserModel(
+  factory AuthUserModel.fromJson(Map<String, dynamic> jsonData) {
+    return AuthUserModel(
       id: jsonData['_id'],
       firstName: jsonData['first_name'] ?? 'Unknown',
       lastName: jsonData['last_name'] ?? '',
@@ -36,7 +37,7 @@ class UserModel {
       'email': email,
       'phone': phone,
       'avatar_url': avatarUrl,
-      'city': city
+      'city': city,
     };
   }
 }

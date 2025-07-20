@@ -1,9 +1,9 @@
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:telemedicine_platform_for_remote_areas/core/database/user_db_helper.dart';
+import 'package:telemedicine_platform_for_remote_areas/core/database/auth_user_db_helper.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/auth/data/models/sign_in_request_model.dart';
-import 'package:telemedicine_platform_for_remote_areas/features/auth/data/models/user_model.dart';
+import 'package:telemedicine_platform_for_remote_areas/features/auth/data/models/auth_user_model.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/auth/ui/controllers/auth_controller.dart';
 
 class SignInController extends GetxController {
@@ -18,7 +18,7 @@ class SignInController extends GetxController {
     _inProgress = true;
     update();
 
-    final userData = await UserDBHelper().getUser(request.email.trim());
+    final userData = await AuthUserDBHelper().getUser(request.email.trim());
 
     if (userData == null) {
       _errorMessage = "User not found.";
@@ -37,7 +37,7 @@ class SignInController extends GetxController {
       return false;
     }
 
-    final user = UserModel(
+    final user = AuthUserModel(
       email: userData['email'],
       id: '',
       firstName: '',

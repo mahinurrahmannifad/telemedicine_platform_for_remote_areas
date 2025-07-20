@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/home/widgets/home_carousel_slider.dart';
+import 'package:telemedicine_platform_for_remote_areas/features/home/widgets/greetings_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               //_buildSearchTextField(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 36),
+              const GreetingsWidget(),
+              const SizedBox(height: 4),
               const HomeCarouselSlider(),
               const SizedBox(height: 16),
             ],
