@@ -15,9 +15,9 @@ class MainBottomNavBarScreen extends StatefulWidget {
 
 class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
   final List<Widget> _screens=[
-    const HomeScreen(),
+     HomeScreen(),
     // const SearchScreen(),
-    // const CalendarScreen(),
+    // const Appointments(),
     // const ProfileScreen(),
   ];
 
@@ -53,7 +53,7 @@ class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
               destinations: const [
                 NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
                 NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
-                NavigationDestination(icon: Icon(Icons.calendar_month), label: 'Calender'),
+                NavigationDestination(icon: Icon(Icons.calendar_month), label: 'Appointments'),
                 NavigationDestination(
                     icon: Icon(Icons.supervised_user_circle), label: 'Profile'),
               ],

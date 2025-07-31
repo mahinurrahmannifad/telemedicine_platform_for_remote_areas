@@ -1,5 +1,5 @@
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:telemedicine_platform_for_remote_areas/features/common/data/models/location_model.dart';
 
 class LocationDatabaseHelper {
@@ -19,7 +19,7 @@ class LocationDatabaseHelper {
   static Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE user (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         name TEXT,
         location TEXT
       )
@@ -28,13 +28,19 @@ class LocationDatabaseHelper {
 
   static Future<void> insertUser(LocationModel user) async {
     final db = await database;
-    await db.insert('user', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(
+      'user',
+      user.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   static Future<LocationModel?> fetchUser() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('user', limit: 1);
-    if (maps.isNotEmpty) return LocationModel.fromMap(maps.first);
+    final List<Map<String, dynamic>> maps = await db.query('user', where: 'id = ?', whereArgs: [1]);
+    if (maps.isNotEmpty) {
+      return LocationModel.fromMap(maps.first);
+    }
     return null;
   }
 }

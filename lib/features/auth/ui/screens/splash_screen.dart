@@ -27,8 +27,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
     await Get.find<AuthController>().getUserData();
+
+    if (!mounted) return; // ✅ Prevent using context if widget is disposed
     Navigator.pushReplacementNamed(context, MainBottomNavBarScreen.name);
   }
+
 
   @override
   Widget build(BuildContext context) {

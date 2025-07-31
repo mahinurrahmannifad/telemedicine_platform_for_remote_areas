@@ -94,14 +94,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 24),
                 RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: "Don't have an account? ",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w600),
                     children: [
                       TextSpan(
                           text: 'Sign up',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColors.themeColor,
                           ),
@@ -126,6 +126,9 @@ class _SignInScreenState extends State<SignInScreen> {
         password: _passwordTEController.text,
       );
       final bool isSuccess = await _signInController.signIn(signInRequestModel);
+
+      if (!mounted) return; // ✅ Prevent using context if widget is disposed
+
       if (isSuccess) {
         Navigator.pushNamedAndRemoveUntil(
             context, MainBottomNavBarScreen.name, (value) => false);
@@ -134,9 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
       }
     }
   }
-  // void _onTapSignUpButton() {
-  //   Navigator.pushNamed(context, SignUpScreen.name);
-  // }
+
 
   @override
   void dispose() {
